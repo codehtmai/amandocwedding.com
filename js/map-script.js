@@ -64,7 +64,7 @@
           labelClass: "labels" // the CSS class for the label
         });
 
-    var marker3 = new MarkerWithLabel({
+    var marker2 = new MarkerWithLabel({
        		position: new google.maps.LatLng(41.13713142550872, -74.58225958049297),
        		draggable: false,
        		raiseOnDrag: false,
@@ -75,7 +75,7 @@
        		labelClass: "labels" // the CSS class for the label
      		});
     
-		var marker2 = new MarkerWithLabel({
+		var marker3 = new MarkerWithLabel({
        		position: new google.maps.LatLng(41.1845151, -74.51910720000001),
        		draggable: false,
        		raiseOnDrag: false,
@@ -136,33 +136,64 @@
 		
 		//INFO WINDOWS
 		//=======================================================================================
-		var contentString = '<div>'+
-		'WEDDING CEREMONY';
-      	'</div>';
+		var ceremonyString = '<div>'+
+		'<b>WEDDING CEREMONY</b>'+
+    '<br/>137 Wheatsworth Rd.<br/>Hamburg, NJ 07419'+
+    '<br/><a target="_blank" href="https://www.google.com/maps/dir//Ballyowen+Golf+Club,+137+Wheatsworth+Rd,+Hamburg,+NJ+07419/@41.1397653,-74.589412,2250m/data=!3m1!1e3!4m15!1m6!3m5!1s0x0:0x27a8a43b407d3381!2sBallyowen+Golf+Club!8m2!3d41.1368597!4d-74.5830998!4m7!1m0!1m5!1m1!1s0x89c314ce5c45faa9:0x27a8a43b407d3381!2m2!1d-74.5830989!2d41.13686">Get Directions</a>'+
+    '</div>';
 		
-		var contentString1 = '<div>'+
-		'WEDDING PARTY';
-      	'</div>';
+		var hotelString = '<div>'+
+		'<b>MINERALS HOTEL</b>'+
+    '<br/>2 Chamonix Dr, <br/>Vernon Township, NJ 07462'+
+    '<br/><a target="_blank" href="https://www.google.com/maps/dir//2+Chamonix+Dr,+Vernon+Township,+NJ+07462/data=!4m5!4m4!1m0!1m2!1m1!1s0x89c315f58c705e1d:0xae74768f11a5d3ef?sa=X&ved=0ahUKEwia0Yfeqe_NAhVGgx4KHetwD-wQwwUIHjAA">Get Directions</a>'+
+    '</div>';
 
- 	 	var infowindow = new google.maps.InfoWindow({
-      		content: contentString
+    var receptionString = '<div>'+
+    '<b>COCKTAIL HOUR + RECEPTION</b>'+
+    '<br/>Steps away from the ceremony site,<br/>'+
+    'in the Ballyowen Pavilion'+
+        '</div>';
+
+ 	 	var infowindow2 = new google.maps.InfoWindow({
+      		content: ceremonyString
   		});
 		
-		var infowindow1 = new google.maps.InfoWindow({
-      		content: contentString1
+		var infowindow3 = new google.maps.InfoWindow({
+      		content: hotelString
   		});
 		
-		
+    var infowindow1 = new google.maps.InfoWindow({
+          content: receptionString
+      });
 		
 		//OPEN INFO WINDOWS ON LOAD
 		//=======================================================================================
-  		infowindow.open(map,marker1);
+  		//infowindow.open(map,marker1);
 		
 		//ON CLICK MARKER, OPEN INFO WINDOWS
 		//=======================================================================================
+
+
+    function closeInfoWindows(infowindow1,infowindow2,infowindow3){
+      infowindow1.close();
+      infowindow2.close();
+      infowindow3.close();
+    };
+
 		google.maps.event.addListener(marker1, 'click', function() {
-  			infowindow.open(map,marker1);
+      closeInfoWindows(infowindow1,infowindow2,infowindow3);
+  			infowindow1.open(map,marker1);
   		});
+
+    google.maps.event.addListener(marker2, 'click', function() {
+      closeInfoWindows(infowindow1,infowindow2,infowindow3);
+        infowindow2.open(map,marker2);
+      });
+
+    google.maps.event.addListener(marker3, 'click', function() {
+      closeInfoWindows(infowindow1,infowindow2,infowindow3);
+        infowindow3.open(map,marker3);
+      });
 
 		//ON MARKER CLICK EVENTS
 		//=======================================================================================
